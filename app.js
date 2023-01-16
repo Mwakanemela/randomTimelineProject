@@ -10,6 +10,7 @@ generateEvent();
 
 outputTimeLine();
 function outputTimeLine() {
+    sortData(myData, 'val');
     myData.forEach((el, index) => {
         const li = document.createElement('li');
         orderListEvents.append(li);
@@ -20,7 +21,7 @@ function outputTimeLine() {
 
         const div2 = document.createElement('div');
         div2.textContent = el.content;
-        li.append(div2);
+        li.append(div2); 
 
         const div3 = document.createElement('div');
         let tempDate = new Date(el.val);
@@ -31,6 +32,23 @@ function outputTimeLine() {
         const hr = document.createElement('hr');
         li.append(hr);
     })
+}
+
+function sortData(obj, prop) {
+    console.log(obj);
+    obj.sort((a, b) => {
+        console.log(a[prop], b[prop]);
+
+        if(a[prop] < b[prop]) {
+            return -1;
+        }
+
+        if(a[prop] > b[prop]) {
+            return 1;
+        }
+
+        return 0;
+    }) 
 }
 function generateEvent() {
 
