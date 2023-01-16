@@ -1,11 +1,37 @@
 const timelineIndicator = document.querySelector('.timelineIndicator');
 const eventInfo = document.querySelector('.eventInfo');
+const orderListEvents = eventInfo.querySelector('ol');
+
 const page = {indicators:[], info:[]};
 
 const myData = [];
 
 generateEvent();
 
+outputTimeLine();
+function outputTimeLine() {
+    myData.forEach((el, index) => {
+        const li = document.createElement('li');
+        orderListEvents.append(li);
+        const div1 = document.createElement('div');
+        div1.textContent = el.title.toUpperCase();
+        div1.style.fontSize = '1.5em';
+        li.append(div1);
+
+        const div2 = document.createElement('div');
+        div2.textContent = el.content;
+        li.append(div2);
+
+        const div3 = document.createElement('div');
+        let tempDate = new Date(el.val);
+        div3.textContent = tempDate.toISOString().substr(0, 10);
+        div3.style.fontSize = '1.1em';
+        li.append(div3);
+        
+        const hr = document.createElement('hr');
+        li.append(hr);
+    })
+}
 function generateEvent() {
 
     function ranDate(start, end) {
@@ -13,7 +39,7 @@ function generateEvent() {
     }
     for(let x = 0; x<10; x++) {
         let description = '';
-        let ran = Math.floor(Math.random() * 10 ) + 3;
+        let ran = Math.floor(Math.random() * 2 ) + 2;
         for( let i = 0; i < 3; i++) {
             description += (getParagraphs()) + '\n'; 
         }
@@ -21,7 +47,7 @@ function generateEvent() {
         let randomDate = ranDate(new Date(2023, 0, 1), new Date(2024, 0, 1));
         let tempObj = {
         val:randomDate.getTime(),
-        title:generateWords(5),
+        title:generateWords(3),
         content:description
       }
       myData.push(tempObj);
