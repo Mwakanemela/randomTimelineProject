@@ -17,8 +17,8 @@ outputTimeLine();
 
 next.addEventListener('click', (e)=> {
     let box = orderListInd.getBoundingClientRect();
-    console.log(myData.length * move * -1);
-    console.log(box.left - box.width);
+    // console.log(myData.length * move * -1);
+    // console.log(box.left - box.width);
     page.pos -= move;
     if((box.left - box.width) < (myData.length * move * -1) + move * 2) {
         page.pos = (myData.length * move * -1) + (move*3);
@@ -29,8 +29,8 @@ next.addEventListener('click', (e)=> {
 
 prev.addEventListener('click', (e)=> {
     let box = orderListInd.getBoundingClientRect();
-    console.log(myData.length * move);
-    console.log(box);
+    // console.log(myData.length * move);
+    // console.log(box);
     page.pos += move;
 
     if(box.left > move) {
