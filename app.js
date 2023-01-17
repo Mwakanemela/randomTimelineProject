@@ -31,6 +31,21 @@ function setValue(ele, prop, val) {
 function showEvent(val) {
     console.log(val);
     console.log(page);
+    page.indicators.forEach((el, index)=>{
+        if(index <= (val + 1)) {
+            el.classList.add('done');
+        }else {
+            el.classList.remove('done');
+        }
+
+        if(index == val) {
+            el.classList.add('active');
+
+        }else {
+            el.classList.remove('active');
+        }
+    })
+
     page.info.forEach((el, index)=>{
         console.log(el);
         if(index == val) {

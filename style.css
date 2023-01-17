@@ -56,9 +56,19 @@
     position: absolute;
     width: 300px;
     height: 5px;
-    top: -300px;
+    top: 25px;
+    left: -300px;
     z-index: -999;
+    background-color: grey; 
     transition: all ease-in-out .5s;
+}
+
+.done.active {
+    background-color: green;
+    color: white;
+}
+.done:before {
+    background-color: green !important;
 }
 
 .btn {
