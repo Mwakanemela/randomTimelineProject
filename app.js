@@ -2,21 +2,48 @@ const timelineIndicator = document.querySelector('.timelineIndicator');
 const eventInfo = document.querySelector('.eventInfo');
 const orderListEvents = eventInfo.querySelector('ol');
 const orderListInd = timelineIndicator.querySelector('ol');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
 
-const page = {indicators:[], info:[]};
+let move = 200;
+
+const page = {indicators:[], info:[], pos:0};
 
 const myData = [];
 
 generateEvent();
 
 outputTimeLine();
+
+next.addEventListener('click', (e)=> {
+    page.pos -= move;
+    setValue(orderListInd, 'translateX', page.pos + 'px');
+});
+
+prev.addEventListener('click', (e)=> {
+    page.pos += move;
+    setValue(orderListInd, 'translateX', page.pos + 'px');
+});
+
+function setValue(ele, prop, val) {
+    ele.style["transform"] = prop + "(" + val + ")";
+}
+function showEvent(val) {
+    console.log(val);
+}
 function outputTimeLine() {
     sortData(myData, 'val');
     myData.forEach((el, index) => {
         const li1 = document.createElement('li');
         let tempDate = new Date(el.val);
-        let tempHolder = tempDate.toDateString().split(' '); 
+        let tempHolder = tempDate.toDateString().split(' ');
+        
+        li1.style.left = move * index + 'px';
+
         li1.textContent = tempHolder.slice(1, 3).join('--');
+        li1.addEventListener('click', (e)=> {
+            showEvent(index);
+        });
         orderListInd.append(li1);
         const li = document.createElement('li');
         orderListEvents.append(li);
@@ -37,6 +64,10 @@ function outputTimeLine() {
         
         const hr = document.createElement('hr');
         li.append(hr);
+
+        page.indicators.push(li1);
+        page.info.push(li1);
+        showEvent(0);
     })
 }
 
@@ -76,7 +107,7 @@ function generateEvent() {
       }
       myData.push(tempObj);
     }
-    console.log(myData);
+    //console.log(myData);
     
     
 }
