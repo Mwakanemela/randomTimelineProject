@@ -90,17 +90,27 @@ function outputTimeLine() {
         const div1 = document.createElement('div');
         div1.textContent = el.title.toUpperCase();
         div1.style.fontSize = '1.5em';
+        div1.style.padding = '10px';
         li.append(div1);
-
-        const div2 = document.createElement('div');
-        div2.textContent = el.content;
-        li.append(div2); 
 
         const div3 = document.createElement('div');
         
-        div3.textContent = tempDate.toISOString().substr(0, 10);
+        //div3.textContent = tempDate.toISOString().substr(0, 10);
+        div3.textContent = tempDate.toDateString();
         div3.style.fontSize = '1.1em';
+        div3.style.padding = '10px';
+        div3.style.backgroundColor = 'black';
+        div3.style.color = 'white';
         li.append(div3);
+
+        const div2 = document.createElement('div');
+        div2.innerHTML ='<img src="images/me.jpg" />';
+        div2.innerHTML +=  el.content;
+        div2.style.padding = '10px';
+
+        li.append(div2); 
+
+        
         
         const hr = document.createElement('hr');
         li.append(hr);

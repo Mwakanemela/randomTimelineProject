@@ -4,6 +4,7 @@
     margin: auto;
     height: 100vh;
     overflow: hidden;
+    min-width: 600px;  
 }
 
 .eventInfo {
@@ -40,7 +41,7 @@
     text-align: center;
     top: 0;
     left: 0;
-    width: 60px;
+    width: 80px;
     height: 60px;
     border : 1px solid #33aa55;
     border-radius: 50%;
@@ -67,7 +68,7 @@
     background-color: green;
     color: white;
 }
-.done:before {
+.done::before {
     background-color: green !important;
 }
 
@@ -82,12 +83,29 @@
     list-style: none;
     line-height: 50px;
     color: white;
+    cursor: pointer;
 }
 
+.btn:hover {
+    opacity: 0.5;
+}
 .prev {
     left: 60px;
 }
 
 .next {
     right: 60px;
+}
+
+.eventInfo img {
+    width: 10%;
+    float: left;
+    max-width: 300px;
+    padding: 5px;
+    border: 5px solid white;
+    margin: 5px;
+}
+
+.eventInfo img::after {
+    clear: both;
 }
