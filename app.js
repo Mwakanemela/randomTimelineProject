@@ -1,6 +1,7 @@
 const timelineIndicator = document.querySelector('.timelineIndicator');
 const eventInfo = document.querySelector('.eventInfo');
 const orderListEvents = eventInfo.querySelector('ol');
+const orderListInd = timelineIndicator.querySelector('ol');
 
 const page = {indicators:[], info:[]};
 
@@ -12,6 +13,11 @@ outputTimeLine();
 function outputTimeLine() {
     sortData(myData, 'val');
     myData.forEach((el, index) => {
+        const li1 = document.createElement('li');
+        let tempDate = new Date(el.val);
+        let tempHolder = tempDate.toDateString().split(' '); 
+        li1.textContent = tempHolder.slice(1, 3).join('--');
+        orderListInd.append(li1);
         const li = document.createElement('li');
         orderListEvents.append(li);
         const div1 = document.createElement('div');
@@ -24,7 +30,7 @@ function outputTimeLine() {
         li.append(div2); 
 
         const div3 = document.createElement('div');
-        let tempDate = new Date(el.val);
+        
         div3.textContent = tempDate.toISOString().substr(0, 10);
         div3.style.fontSize = '1.1em';
         li.append(div3);
