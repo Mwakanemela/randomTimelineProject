@@ -16,12 +16,26 @@ generateEvent();
 outputTimeLine();
 
 next.addEventListener('click', (e)=> {
+    let box = orderListInd.getBoundingClientRect();
+    console.log(myData.length * move * -1);
+    console.log(box.left - box.width);
     page.pos -= move;
+    if((box.left - box.width) < (myData.length * move * -1) + move * 2) {
+        page.pos = (myData.length * move * -1) + (move*3);
+    }
+    
     setValue(orderListInd, 'translateX', page.pos + 'px');
 });
 
 prev.addEventListener('click', (e)=> {
+    let box = orderListInd.getBoundingClientRect();
+    console.log(myData.length * move);
+    console.log(box);
     page.pos += move;
+
+    if(box.left > move) {
+        page.pos = move;
+    }
     setValue(orderListInd, 'translateX', page.pos + 'px');
 });
 
@@ -29,8 +43,8 @@ function setValue(ele, prop, val) {
     ele.style["transform"] = prop + "(" + val + ")";
 }
 function showEvent(val) {
-    console.log(val);
-    console.log(page);
+    ////console.log(val);
+    //console.log(page);
     page.indicators.forEach((el, index)=>{
         if(index <= (val + 1)) {
             el.classList.add('done');
@@ -47,7 +61,7 @@ function showEvent(val) {
     })
 
     page.info.forEach((el, index)=>{
-        console.log(el);
+        //console.log(el);
         if(index == val) {
             el.style.opacity = 1;
         }
@@ -98,9 +112,9 @@ function outputTimeLine() {
 }
 
 function sortData(obj, prop) {
-    console.log(obj);
+    //console.log(obj);
     obj.sort((a, b) => {
-        console.log(a[prop], b[prop]);
+        //console.log(a[prop], b[prop]);
 
         if(a[prop] < b[prop]) {
             return -1;
@@ -118,13 +132,13 @@ function generateEvent() {
     function ranDate(start, end) {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
-    for(let x = 0; x<10; x++) {
+    for(let x = 0; x<5; x++) {
         let description = '';
         let ran = Math.floor(Math.random() * 2 ) + 2;
         for( let i = 0; i < 3; i++) {
             description += (getParagraphs()) + '\n'; 
         }
-       // console.log(description);
+       // //console.log(description);
         let randomDate = ranDate(new Date(2023, 0, 1), new Date(2024, 0, 1));
         let tempObj = {
         val:randomDate.getTime(),
@@ -133,7 +147,7 @@ function generateEvent() {
       }
       myData.push(tempObj);
     }
-    //console.log(myData);
+    ////console.log(myData);
     
     
 }
