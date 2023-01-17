@@ -30,6 +30,16 @@ function setValue(ele, prop, val) {
 }
 function showEvent(val) {
     console.log(val);
+    console.log(page);
+    page.info.forEach((el, index)=>{
+        console.log(el);
+        if(index == val) {
+            el.style.opacity = 1;
+        }
+        else {
+            el.style.opacity = 0; 
+        }
+    })
 }
 function outputTimeLine() {
     sortData(myData, 'val');
@@ -47,6 +57,7 @@ function outputTimeLine() {
         orderListInd.append(li1);
         const li = document.createElement('li');
         orderListEvents.append(li);
+        li.style.opacity = 0;
         const div1 = document.createElement('div');
         div1.textContent = el.title.toUpperCase();
         div1.style.fontSize = '1.5em';
@@ -66,7 +77,7 @@ function outputTimeLine() {
         li.append(hr);
 
         page.indicators.push(li1);
-        page.info.push(li1);
+        page.info.push(li);
         showEvent(0);
     })
 }
